@@ -1,4 +1,4 @@
-name: Latexdiff between master and a given tag
+name: Latexdiff
 on: [push, pull_request]
 jobs:
   test:
