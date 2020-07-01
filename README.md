@@ -1,4 +1,6 @@
 # latexdiff-workflow
+![Latexdiff](https://github.com/eleurent/latexdiff-workflow/workflows/Latexdiff/badge.svg)
+
 A [workflow](.github/workflows/latexdiff.yml) to show the diff between two versions of a latex document.
 
 It uses:
