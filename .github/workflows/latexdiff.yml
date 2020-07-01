@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: old
-          ref: v1
+          ref: v1.0
       - name: Install latexdiff
         run: sudo apt-get install latexdiff
       - name: Run latexdiff
