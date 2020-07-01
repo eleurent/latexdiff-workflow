@@ -1,0 +1,33 @@
+name: Latexdiff between master and a given tag
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout new version
+        uses: actions/checkout@v2
+        with:
+          path: new
+      - name: Checkout old version
+        uses: actions/checkout@v2
+        with:
+          path: old
+          ref: v1
+      - name: Install latexdiff
+        run: sudo apt-get install latexdiff
+      - name: Run latexdiff
+        run: latexdiff --flatten old/test/test.tex new/test/test.tex > new/test/diff.tex
+      - name: Compile LaTeX difference document
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: diff.tex
+          working_directory: new/test/
+      - name: Check pdf files
+        run: |
+          file new/test/diff.pdf | grep -q ' PDF '
+      - name: Upload
+        uses: actions/upload-artifact@master
+        with:
+          name: test
+          path: new/test
+        if: always()
